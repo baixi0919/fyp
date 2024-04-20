@@ -24,7 +24,7 @@ if ($conn->connect_error) {
 }
 
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT products.id as product_id, products.name, products.description, products.price, carts.quantity FROM products INNER JOIN carts ON products.id = carts.product_id WHERE carts.user_id = 7";
+$sql = "SELECT products.id as product_id, products.name, products.description, products.price, carts.quantity FROM products INNER JOIN carts ON products.id = carts.product_id WHERE carts.user_id = ?";
 
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
