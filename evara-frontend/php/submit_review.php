@@ -19,16 +19,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'] ?? '';
     $website = $_POST['website'] ?? '';
     $comment = $_POST['comment'] ?? '';
+    $product_id = $_POST['product_id'] ?? '';  // 获取隐藏的产品 ID
 
     // 使用预处理语句防止SQL注入
-    $stmt = $conn->prepare("INSERT INTO reviews (name, email, website, comment) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $name, $email, $website, $comment);
+    $stmt = $conn->prepare("INSERT INTO reviews (product_id, name, email, website, comment) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("issss", $product_id, $name, $email, $website, $comment);
 
     if ($stmt->execute()) {
         $stmt->close();
         $conn->close();
-        // 重定向到产品详情页，并带有成功消息的参数
-        header("Location: ../shop-product-full.html?review=success");
+        // 重定向到对应的产品详情页，并带有成功消息的参数
+        header("Location: ../shop-product-{$product_id}.html?review=success");
         exit;
     } else {
         echo "Error: " . $stmt->error;
