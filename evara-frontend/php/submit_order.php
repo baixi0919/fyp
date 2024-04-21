@@ -37,9 +37,10 @@ if ($stmt->execute()) {
     $result = $stmt->get_result();
     
     while ($row = $result->fetch_assoc()) {
-        $stmt = $conn->prepare("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("iiid", $order_id, $row['product_id'], $row['quantity'], $row['price']);
-        $stmt->execute();
+        $insert_order_item_stmt = $conn->prepare("INSERT INTO order_items (order_id, user_id, product_id, quantity, price) VALUES (?, ?, ?, ?, ?)");
+        $insert_order_item_stmt->bind_param("iiidi", $order_id, $user_id, $row['product_id'], $row['quantity'], $row['price']);
+        $insert_order_item_stmt->execute();
+        $insert_order_item_stmt->close();
     }
 
     // 清空购物车
@@ -52,7 +53,7 @@ if ($stmt->execute()) {
 
     echo "<script>
             alert('Order placed successfully.');
-            window.location.href = '../index.html'; // 更改为你的首页地址
+            window.location.href = '../index.html';
           </script>";
 } else {
     echo "Error placing order: " . $stmt->error;
