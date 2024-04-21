@@ -341,21 +341,24 @@
     /*---------------------
         Price range
     --------------------- */
-    var sliderrange = $('#slider-range');
-    var amountprice = $('#amount');
-    $(function() {
-        sliderrange.slider({
-            range: true,
-            min: 0,
-            max: 50000,
-            values: [0, 50000],
-            slide: function(event, ui) {
-                amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
-            }
-        });
-        amountprice.val("$" + sliderrange.slider("values", 0) +
-            " - $" + sliderrange.slider("values", 1));
-    });
+    // var sliderrange = $('#slider-range');
+    // var amountprice = $('#amount');
+    // $(function() {
+    //     sliderrange.slider({
+    //         range: true,
+    //         min: 0,
+    //         max: 50000,
+    //         values: [0, 50000],
+    //         slide: function(event, ui) {
+    //             amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
+    //         },
+    //         change: function(event, ui) {
+    //             fetchProductsByPrice(ui.values[0], ui.values[1]);
+    //         }
+    //     });
+    //     amountprice.val("$" + sliderrange.slider("values", 0) +
+    //         " - $" + sliderrange.slider("values", 1));
+    // });
 
     /*-------------------------------
         Sort by active

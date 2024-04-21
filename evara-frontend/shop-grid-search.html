@@ -388,7 +388,7 @@
                                     <div class="product-cart-wrap mb-30">
                                         <div class="product-img-action-wrap">
                                             <div class="product-img product-img-zoom">
-                                                <a href="shop-product-right.html?product_id=${product.id}">
+                                                <a href="shop-product-${product.id}.html">
                                                     <img class="default-img" src="${product.image_path}" alt="${product.name}">
                                                     <img class="hover-img" src="${product.image_path}" alt="${product.name}">
                                                 </a>
@@ -418,6 +418,46 @@
                 })
                 .catch(error => console.error('Error loading search results:', error));
         }
+    </script>
+
+    <script>
+        var sliderrange = $('#slider-range');
+        var amountprice = $('#amount');
+        $(function () {
+            sliderrange.slider({
+                range: true,
+                min: 0,
+                max: 50000,
+                values: [0, 50000],
+                slide: function (event, ui) {
+                    amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
+                },
+                change: function (event, ui) {
+                    fetchProductsByPrice(ui.values[0], ui.values[1]);
+                }
+            });
+            amountprice.val("$" + sliderrange.slider("values", 0) +
+                " - $" + sliderrange.slider("values", 1));
+        });
+
+        function fetchProductsByPrice(minPrice, maxPrice) {
+            var url = `php/get_search_results.php?minPrice=${minPrice}&maxPrice=${maxPrice}`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    updateProductDisplay(data.products); // 更新页面显示
+                })
+                .catch(error => console.error('Error loading products by price:', error));
+        }
+
+        function updateProductDisplay(products) {
+            const productsContainer = document.querySelector('.row.product-grid-3');
+            productsContainer.innerHTML = ''; // Clear existing products
+            products.forEach(product => {
+                productsContainer.innerHTML += `...`; // 根据你的 HTML 模板插入商品数据
+            });
+        }
+
     </script>
 
 
