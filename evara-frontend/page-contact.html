@@ -16,12 +16,8 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/main.css?v=3.4">
     <!--leaflet map-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 </head>
 
 <body>
@@ -32,7 +28,7 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info">
                             <ul>
-                                <li><i class="fi-rs-smartphone"></i> <a href="#">(+01) - 2345 - 6789</a></li>
+                                <li><i class="fi-rs-smartphone"></i> <a href="#">(+852)1234-5678</a></li>
                                 <li><i class="fi-rs-marker"></i><a href="page-contact.html">Our location</a></li>
                             </ul>
                         </div>
@@ -79,8 +75,9 @@
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
-                            <form action="#">
-                                <input type="text" placeholder="Search for items...">
+                            <form action="php/search.php" method="POST">
+                                <input type="text" name="search_term" placeholder="Search for items...">
+                                <button type="submit">Search</button>
                             </form>
                         </div>
                         <div class="header-action-right">
@@ -139,23 +136,27 @@
                                     <li>
                                         <a href="page-about.html">About</a>
                                     </li>
-                                    <li><a href="shop-grid-right.html">Shop</a>
-                                    </li>
-                                    <li class="position-static"><a href="#">Mega menu</a>
+                                    <li><a href="shop-grid-search.html">Shop</a>
                                     </li>
                                     <li><a href="blog-category-grid.html">Blog</a>
                                     </li>
-                                    <li><a href="#">Pages </a>
-                                    </li>
                                     <li>
                                         <a href="page-contact.html">Contact</a>
+                                    </li>
+                                    <li><a href="#"></a>
+                                    </li>
+                                    <li><a href="#"></a>
+                                    </li>
+                                    <li><a href="#"></a>
+                                    </li>
+                                    <li><a href="#"></a>
                                     </li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
                     <div class="hotline d-none d-lg-block">
-                        <p><i class="fi-rs-headset"></i><span>Hotline</span> 1900 - 888 </p>
+                        <p><i class="fi-rs-headset"></i><span>Hotline</span> 1234-5678 </p>
                     </div>
                     </p>
                     <div class="header-action-right d-block d-lg-none">
@@ -165,7 +166,7 @@
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="shop-cart.html">
                                     <img alt="Evara" src="assets/imgs/theme/icons/icon-cart.svg">
-                                    <span class="pro-count white">2</span>
+                                    <span class="pro-count white"></span>
                                 </a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul>
@@ -174,7 +175,7 @@
                                     </ul>
                                     <div class="shopping-cart-footer">
                                         <div class="shopping-cart-total">
-                                            <h4>Total <span>$383.00</span></h4>
+                                            <h4>Total <span>$</span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
                                             <a href="shop-cart.html">View cart</a>
@@ -397,9 +398,7 @@
                         <p class="wow fadeIn animated">
                             <a class="btn btn-brand btn-lg font-weight-bold text-white border-radius-5 btn-shadow-brand hover-up"
                                 href="page-about.html">About Us</a>
-                            <a
-                                class="btn btn-outline btn-lg btn-brand-outline font-weight-bold text-brand bg-white text-hover-white ml-15 border-radius-5 btn-shadow-brand hover-up">Support
-                                Center</a>
+                            
                         </p>
                     </div>
                 </div>
@@ -409,22 +408,15 @@
             <div class="container">
                 <div id='map-panes' class="leaflet-map mb-50"></div>
                 <div class="row">
-                    <div class="col-md-4 mb-4 mb-md-0">
-
-                    </div>
-                    <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="col-md-5 mb-4 mb-md-0"></div>
+                    <div class="col-md-5 mb-4 mb-md-0">
                         <h4 class="mb-15 text-brand">Company</h4>
                         21 Yuen Wo Road, Sha Tin Wai,<br>
                         Sha Tin District, Hong Kong<br>
                         <abbr title="Phone">Phone:</abbr> (852) 1234-5678<br>
                         <abbr title="Email">Email: </abbr>fyp@ive.com<br>
-                        <a
-                            class="btn btn-outline btn-sm btn-brand-outline font-weight-bold text-brand bg-white text-hover-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i
-                                class="fi-rs-marker mr-10"></i>View map</a>
                     </div>
-                    <div class="col-md-4">
-
-                    </div>
+                    <div class="col-md-5 mb-4 mb-md-0"></div>
                 </div>
             </div>
         </section>
@@ -434,8 +426,10 @@
                     <div class="col-xl-8 col-lg-10 m-auto">
                         <div class="contact-from-area padding-20-row-col wow FadeInUp">
                             <h3 class="mb-10 text-center">Get in Touch</h3>
-                            <p class="text-muted mb-30 text-center font-sm">We'd love to hear from you. Please fill out the form below, and we will get back to you as soon as possible.</p>
-                            <form class="contact-form-style text-center" id="contact-form" action="php/submit_contact.php" method="post">
+                            <p class="text-muted mb-30 text-center font-sm">We'd love to hear from you. Please fill out
+                                the form below, and we will get back to you as soon as possible.</p>
+                            <form class="contact-form-style text-center" id="contact-form"
+                                action="php/submit_contact.php" method="post">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="input-style mb-20">

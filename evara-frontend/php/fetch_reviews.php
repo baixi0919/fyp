@@ -5,7 +5,6 @@ header('Content-Type: application/json');
 
 // 检查用户是否已登录
 if (!isset($_SESSION['user_id'])) {
-    // 用户未登录，返回错误信息
     echo json_encode(['success' => false, 'message' => 'User not logged in']);
     exit;
 }
@@ -22,13 +21,20 @@ if ($conn->connect_error) {
     exit;
 }
 
-$sql = "SELECT name, comment, created_at FROM reviews ORDER BY created_at DESC";
-$result = $conn->query($sql);
+$product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 0;
+
+$sql = "SELECT name, comment, created_at FROM reviews WHERE product_id = ? ORDER BY created_at DESC";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('i', $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
 $reviews = [];
 while ($row = $result->fetch_assoc()) {
     $reviews[] = $row;
 }
 
 echo json_encode($reviews);
+$stmt->close();
 $conn->close();
 ?>

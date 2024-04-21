@@ -21,10 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $comment = $_POST['comment'] ?? '';
     $product_id = $_POST['product_id'] ?? '';  // 获取隐藏的产品 ID
 
+    // echo "Debug - Trying to insert:";
+    // echo "Product ID: " . $product_id . "<br>";
+    // echo "Name: " . $name . "<br>";
+    // echo "Email: " . $email . "<br>";
+    // echo "Website: " . $website . "<br>";
+    // echo "Comment: " . $comment . "<br>";
+    // exit;
+
     // 使用预处理语句防止SQL注入
     $stmt = $conn->prepare("INSERT INTO reviews (product_id, name, email, website, comment) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("issss", $product_id, $name, $email, $website, $comment);
-
+   
     if ($stmt->execute()) {
         $stmt->close();
         $conn->close();
