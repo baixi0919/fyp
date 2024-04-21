@@ -1,7 +1,5 @@
 (function ($) {
     "use strict";
-    // Page loading
-    // ¸ü¶àÏÂÔØ£ºHttp://www.bootstrapmb.com
     $(window).on('load', function() {
         $('#preloader-active').delay(450).fadeOut('slow');
         $('body').delay(450).css({
@@ -46,7 +44,7 @@
         $("#slider-range").slider({
             range: true,
             min: 0,
-            max: 500,
+            max: 50000,
             values: [130, 250],
             slide: function (event, ui) {
                 $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
@@ -348,9 +346,9 @@
     $(function() {
         sliderrange.slider({
             range: true,
-            min: 16,
-            max: 400,
-            values: [0, 300],
+            min: 0,
+            max: 50000,
+            values: [0, 50000],
             slide: function(event, ui) {
                 amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
             }

@@ -872,6 +872,8 @@
                         cartCounts.forEach(function (cartCount) {
                             cartCount.style.display = 'none'; // 用户未登录，隐藏购物车计数器
                         });
+                        // 用户未登录时跳转到注册页面
+                        window.location.href = 'page-login-register.html';
                     }
                 }
             };

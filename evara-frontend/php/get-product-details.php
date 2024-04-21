@@ -24,7 +24,6 @@ if ($conn->connect_error) {
     die("连接失败: " . $conn->connect_error);
 }
 
-// 获取通过 URL 传递的产品 ID，默认为 1
 $product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 1;
 
 $sql = "SELECT name, description, price FROM products WHERE id = ?";

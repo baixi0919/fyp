@@ -72,8 +72,9 @@
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
-                            <form action="#">
-                                <input type="text" placeholder="Search for items...">
+                            <form action="php/search.php" method="POST">
+                                <input type="text" name="search_term" placeholder="Search for items...">
+                                <button type="submit">Search</button>
                             </form>
                         </div>
                         <div class="header-action-right">
@@ -132,9 +133,7 @@
                                     <li>
                                         <a href="page-about.html">About</a>
                                     </li>
-                                    <li><a href="shop-grid-right.html">Shop</a>
-                                    </li>
-                                    <li class="position-static"><a href="#">Mega menu</a>
+                                    <li><a href="shop-grid-search.html">Shop</a>
                                     </li>
                                     <li><a href="blog-category-grid.html">Blog</a>
                                     </li>
@@ -245,7 +244,8 @@
                                     <h4 class="animated">Exciting Arrivals</h4>
                                     <h2 class="animated fw-900">Exclusive Deals Directly From</h2>
                                     <h1 class="animated fw-900 text-8">Top Brands</h1>
-                                    <p class="animated">Discover the latest in Clothing, Shoes, Bags, Wallets, and more...</p>
+                                    <p class="animated">Discover the latest in Clothing, Shoes, Bags, Wallets, and
+                                        more...</p>
 
                                 </div>
                             </div>
@@ -513,9 +513,6 @@
                 totalElement.textContent = `$${total.toFixed(2)}`;
             }
         }
-
-
-
 
         // 移除购物车项的函数
         function removeCartItem(productId) {

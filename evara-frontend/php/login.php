@@ -36,7 +36,8 @@ if ($result->num_rows > 0) {
         exit;
     }
 } else {
-    echo "Email不存在";
+    echo "<script>alert('Email not exists!');</script>";
+    echo "<script>window.location.href='../page-login-register.html';</script>";
 }
 
 // 關閉連接
