@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-04-21 06:36:13
+-- 產生時間： 2024-04-22 11:45:19
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -39,7 +39,29 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `product_id`, `quantity`) VALUES
-(30, 7, 1, 1);
+(47, 1, 1, 1),
+(48, 1, 2, 1),
+(49, 1, 3, 1),
+(50, 1, 4, 1),
+(51, 1, 5, 1),
+(52, 1, 7, 1),
+(53, 1, 8, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `contact_submissions`
+--
+
+CREATE TABLE `contact_submissions` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `telephone` varchar(50) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `submitted_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -62,14 +84,6 @@ CREATE TABLE `orders` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- 傾印資料表的資料 `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `fname`, `lname`, `address`, `city`, `state`, `phone`, `email`, `total`, `order_status`, `created_at`) VALUES
-(1, 7, '1', '1', '1', '1', '1', '11', 'chris@chris.com', 199.98, 'pending', '2024-04-20 09:04:52'),
-(2, 7, '1', '1', '1', '1', '1', '11', 'chris@chris.com', 199.98, 'pending', '2024-04-20 09:07:34');
-
 -- --------------------------------------------------------
 
 --
@@ -79,17 +93,11 @@ INSERT INTO `orders` (`id`, `user_id`, `fname`, `lname`, `address`, `city`, `sta
 CREATE TABLE `order_items` (
   `id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- 傾印資料表的資料 `order_items`
---
-
-INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`) VALUES
-(1, 2, 1, 2, 99.99);
 
 -- --------------------------------------------------------
 
@@ -165,9 +173,14 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `name`, `email`, `website`, `comment`, `created_at`, `product_id`) VALUES
-(8, '222', '222@ww.com', '3', '呃呃呃呃', '2024-04-20 16:37:12', 1),
-(9, 'dd', 'd@dd.com', 'w', 'dddd', '2024-04-20 16:37:53', 1),
-(10, 'ddds', 'ss@s.com', 'sd', '顶顶顶顶', '2024-04-20 17:45:55', 1);
+(16, '1', '1@1.com', '1', '1', '2024-04-21 18:17:37', 1),
+(17, '2', '2@2.com', '2', '2', '2024-04-21 18:18:29', 2),
+(18, '3', '3@3.com', '3', '3', '2024-04-21 18:18:59', 3),
+(19, '4', '4@4.com', '4', '4', '2024-04-21 18:19:43', 4),
+(20, '5', '5@5.com', '5', '5', '2024-04-21 18:20:11', 5),
+(21, '6', '6@6.com', '6', '6', '2024-04-21 18:20:39', 6),
+(22, '7', '7@7.com', '7', '7', '2024-04-21 18:21:10', 7),
+(23, '8', '8@8.com', '8', '8', '2024-04-21 18:21:43', 8);
 
 -- --------------------------------------------------------
 
@@ -187,11 +200,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `username`) VALUES
-(1, '123@123.com', '$2y$10$fkZaLoIJw5fhsR42Q1YEmuU7rdhdzL.vE7s1smvfyqAKcxDZeYJdK', '123'),
-(7, 'chris@chris.com', '$2y$10$F/CwLYAfdRr7.jupxuvQiexrnzJTBsa9opC5.z2XRPcJMwPWR1D6S', 'chris'),
-(8, 'ljh@ljh.com', '$2y$10$MIhTH9AwuoVhkSro6I9BUuA0WomGBztHYM4C9.1/jRVC6KSU8gRwq', 'ljh'),
-(9, '1233', '$2y$10$KAifWnd6pfT1V7Wc.Lhtc.SdX8ALSuJFcY.Icm7ZUpMstkquCuOIu', '1233'),
-(10, '111@111.com', '$2y$10$feUAZNAETNov1cIMfwKjv.Y8Lqdf/sN/pC0sNMDpmuNTE8PIW4/Wq', '111');
+(1, '123@123.com', '$2y$10$fkZaLoIJw5fhsR42Q1YEmuU7rdhdzL.vE7s1smvfyqAKcxDZeYJdK', '123');
 
 --
 -- 已傾印資料表的索引
@@ -206,6 +215,12 @@ ALTER TABLE `carts`
   ADD KEY `product_id` (`product_id`);
 
 --
+-- 資料表索引 `contact_submissions`
+--
+ALTER TABLE `contact_submissions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `orders`
 --
 ALTER TABLE `orders`
@@ -218,6 +233,7 @@ ALTER TABLE `orders`
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `order_id` (`order_id`),
+  ADD KEY `user_id` (`user_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
@@ -255,13 +271,19 @@ ALTER TABLE `users`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `contact_submissions`
+--
+ALTER TABLE `contact_submissions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_items`
@@ -285,7 +307,7 @@ ALTER TABLE `product_images`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
@@ -315,7 +337,8 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_items`
   ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
-  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `order_items_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
 -- 資料表的限制式 `product_images`
